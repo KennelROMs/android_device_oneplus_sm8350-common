@@ -12,7 +12,10 @@ cc_library_static {
 
 prebuilt_etc {
     name: "fstab.default",
-    src: "fstab.default",
+    src: select(soong_config_variable("oneplus_sm8350", "martini_erofs"), {
+        true: "fstab.martini.erofs",
+        default: "fstab.default",
+    }),
     vendor: true,
     vendor_ramdisk_available: true,
 }
